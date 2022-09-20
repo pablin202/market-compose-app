@@ -19,12 +19,12 @@ kotlin {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.stockmarketcomposeapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -32,15 +32,14 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        Properties localProperties = new Properties()
+        localProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "API_KEY", "\"${localProperties.getProperty("api_key")}\""
     }
 
-    def localProperties = new Properties()
-    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-
     buildTypes {
-        debug {
-            resValue("string", "api_key", localProperties['api_key'])
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -64,6 +63,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.example.stockmarketcomposeapp'
 }
 
 dependencies {
@@ -88,7 +88,7 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "com.google.accompanist:accompanist-flowlayout:0.17.0"
     implementation 'androidx.paging:paging-compose:1.0.0-alpha16'
-    implementation "androidx.activity:activity-compose:1.6.0-rc01"
+    implementation "androidx.activity:activity-compose:1.6.0-rc02"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.24.2-alpha"
 
     // Compose Nav Destinations
@@ -101,7 +101,7 @@ dependencies {
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-android-compiler:2.42"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    //implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
