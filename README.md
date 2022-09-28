@@ -1,5 +1,6 @@
 # Clean Architecture Stock Market App
 
-Dagger-Hilt
-Retrofit
-Room
+- Jetpack Compose
+- Dagger-Hilt
+- Retrofit
+- Room
