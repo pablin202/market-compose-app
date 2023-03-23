@@ -24,7 +24,7 @@ fun CompanyItem(
         Column(modifier = Modifier.weight(1f)) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = company.name,
+                    text = company.symbol,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp,
                     color = MaterialTheme.colors.onBackground,
@@ -35,16 +35,18 @@ fun CompanyItem(
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = company.exchange,
-                    fontWeight = FontWeight.Light,
-                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 14.sp,
                     color = MaterialTheme.colors.onBackground
                 )
             }
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "(${company.symbol})",
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 16.sp,
+                text = company.name,
+                fontWeight = FontWeight.Light,
+                fontSize = 12.sp,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
                 color = MaterialTheme.colors.onBackground,
             )
         }
